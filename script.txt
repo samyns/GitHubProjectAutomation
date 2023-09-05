@@ -31,3 +31,5 @@ git push
 echo  "$chemin" 
 
 
+idea64.exe "$chemin/$nom_projet"
+
