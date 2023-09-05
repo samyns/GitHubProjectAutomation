@@ -1,25 +1,23 @@
 #!/bin/bash
 
-
-
 echo "Quel sera le nom de votre projet?"
 read nom_projet
 
+# Appel au script Python pour sélectionner le dossier et récupérer la variable
+chemin=$(python3 /emplacement/du/script/python		)
 
-curl -H "Authorization: token your_token" -d "{\"name\":\"$nom_projet\"}" https://api.github.com/user/repos
-
-
+curl -H "Authorization: token <Your_Token>" -d "{\"name\":\"$nom_projet\"}" https://api.github.com/user/repos
 
 
 # Clone le projet GitHub en utilisant l'origine "test"
-git clone --origin template git@github.com:samyns/template.git "$nom_projet"
+git clone --origin template git@github.com:username/lien_du_template.git "$chemin/$nom_projet"
 
-cd $nom_projet/
+
+cd "$chemin/$nom_projet"
 ls
 
-
 # Remplace l'URL origin actuelle par la variable donnée en argument
-git remote set-url template git@github.com:samyns/"$nom_projet".git
+git remote set-url template git@github.com:username/"$nom_projet".git
 git remote -v
 
 # Récupère les dernières modifications du remote
@@ -28,3 +26,8 @@ git pull origin main --allow-unrelated-histories
 git add .
 git commit -m "start"
 git push
+
+# Clone le projet GitHub en utilisant l'origine "template"
+echo  "$chemin" 
+
+
