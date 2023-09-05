@@ -1,50 +1,76 @@
-Guide d'utilisation du script de création de projet GitHub
-Ce guide explique comment utiliser le script Bash fourni pour créer un nouveau projet GitHub en utilisant le terminal. Le script automatisera plusieurs étapes, telles que la création d'un référentiel GitHub, le clonage du modèle de projet, et la configuration du référentiel local pour votre projet personnalisé.
+Script d'automatisation de création de projet sur GitHub
+Ce script automatisé a été développé pour simplifier la création de nouveaux projets GitHub en utilisant un modèle existant et en réduisant au maximum les étapes manuelles. Il permet de :
 
+Créer un nouveau dépôt GitHub à partir du nom de projet saisi par l'utilisateur.
+Cloner le modèle GitHub dans le répertoire de projet local.
+Configurer automatiquement l'URL du dépôt GitHub pour faciliter la synchronisation.
 Prérequis
-Avant de commencer, assurez-vous que vous avez les éléments suivants:
+Avant d'utiliser ce script, assurez-vous d'avoir les éléments suivants installés sur votre système :
 
-Accès à un compte GitHub.
-Un jeton d'authentification GitHub avec les autorisations nécessaires. Vous pouvez générer un token en suivant ces instructions.
-Git installé sur votre système.
-Étapes
-Téléchargez le script
+Bash (Bourne-Again Shell) : Le script principal est écrit en Bash. Assurez-vous d'avoir Bash installé sur votre système.
 
-Assurez-vous que le script Bash est présent sur votre système. Si ce n'est pas le cas, vous pouvez le copier-coller dans un fichier, par exemple create_project.sh, et lui donner les droits d'exécution avec la commande chmod +x create_project.sh.
+Python 3 : Le script Python est utilisé pour sélectionner le répertoire de destination du projet. Vous devez avoir Python 3 installé.
 
-Exécutez le script
+Git : Le système de contrôle de version Git est utilisé pour cloner le modèle et gérer le dépôt GitHub. Assurez-vous d'avoir Git installé.
 
-Ouvrez votre terminal et exécutez le script en utilisant la commande suivante :
+GitHub Token : Vous devez générer un token GitHub personnel avec des autorisations de création de dépôts. Remplacez "<Your_Token>" par votre propre token d'autorisation dans le script.
 
-./create_project.sh
-Nommez votre projet
+Utilisation
+Clonez ce dépôt ou copiez les scripts Bash et Python sur votre système.
 
-Vous serez invité à donner un nom à votre projet. Entrez le nom souhaité et appuyez sur Entrée.
+Exécutez le script Bash en utilisant la commande suivante :
 
-Créez un référentiel GitHub
+bash
+Copy code
+./votre_script.sh
+Suivez les instructions à l'écran :
 
-Le script créera un nouveau référentiel GitHub avec le nom que vous avez choisi en utilisant le jeton d'authentification GitHub que vous avez fourni dans le script.
+Entrez le nom de votre projet.
+Sélectionnez le répertoire de destination où vous souhaitez que le projet soit cloné.
+Attendez que le script termine le processus d'initialisation du projet GitHub.
 
-Clonez le modèle de projet
+Votre nouveau projet est maintenant prêt. Vous pouvez commencer à travailler et à pousser des modifications vers votre dépôt GitHub.
 
-Le script clonera le modèle de projet préexistant (probablement un modèle que vous avez configuré) depuis le référentiel GitHub samyns/template dans le répertoire local avec le nom que vous avez choisi.
+N'oubliez pas de personnaliser votre modèle GitHub en fonction de vos besoins spécifiques avant d'utiliser ce script.
 
-Accédez au répertoire du projet
+Pour créer une commande à partir de votre script Bash afin qu'il puisse être exécuté comme une commande système (c'est-à-dire en utilisant un nom de commande personnalisé), vous pouvez suivre ces étapes :
 
-Le script se déplacera dans le répertoire de votre projet nouvellement créé.
+Choisir un nom de commande : Choisissez un nom court et descriptif pour votre commande personnalisée. Assurez-vous qu'il est unique et ne risque pas de conflit avec d'autres commandes système.
 
-Vérifiez la configuration du référentiel
+Créer un répertoire pour vos commandes personnalisées : Vous pouvez créer un répertoire dans votre système où vous stockerez vos commandes personnalisées. Par exemple, vous pouvez créer un répertoire ~/bin s'il n'existe pas déjà.
 
-Le script configurera l'URL du référentiel "template" pour qu'il pointe vers votre référentiel GitHub nouvellement créé. Il affichera également les URL des référentiels pour vérification.
 
-Récupérez les dernières modifications
+mkdir -p ~/bin
+Ajouter le répertoire à votre PATH : Pour que votre système reconnaisse les commandes dans ce répertoire, vous devez ajouter ~/bin (ou le chemin du répertoire que vous avez choisi) à votre variable d'environnement PATH. Vous pouvez le faire en ajoutant la ligne suivante à votre fichier .bashrc (ou .bash_profile si vous êtes sur macOS) :
 
-Le script récupérera les dernières modifications du référentiel GitHub pour vous assurer que vous travaillez sur la dernière version.
 
-Ajoutez, commitez et poussez vos modifications
+export PATH="$PATH:$HOME/bin"
+Assurez-vous de recharger votre profil shell ou de relancer votre terminal pour que les modifications prennent effet :
 
-Vous êtes maintenant prêt à travailler sur votre projet. Ajoutez, commitez et poussez vos modifications comme d'habitude en utilisant les commandes Git standards.
 
-Votre projet est maintenant configuré et prêt à être développé. Vous pouvez personnaliser le modèle de projet cloné selon vos besoins.
+source ~/.bashrc
+Renommer votre script Bash : Renommez le script Bash que vous avez écrit en utilisant le nom de commande que vous avez choisi. Par exemple, si vous avez choisi le nom de commande create-github-project, renommez votre script en create-github-project.
 
-N'oubliez pas de conserver votre jeton d'authentification GitHub en sécurité, car il permet d'accéder à votre compte GitHub. Assurez-vous également de ne pas partager de données sensibles dans votre référentiel public.
+
+mv votre_script.sh create-github-project
+Ajouter un en-tête : Assurez-vous que votre script commence par un en-tête de script Bash valide, comme ceci :
+
+#!/bin/bash
+Déplacer le script vers le répertoire des commandes personnalisées : Déplacez le script renommé dans le répertoire que vous avez créé pour vos commandes personnalisées (~/bin dans cet exemple).
+
+
+mv create-github-project ~/bin/
+Donner les droits d'exécution au script : Rendez le script exécutable en utilisant la commande chmod :
+
+
+chmod +x ~/bin/create-github-project
+Utilisation : Vous pouvez maintenant utiliser votre nouvelle commande personnalisée dans n'importe quel terminal en tapant simplement :
+
+
+create-github-project
+Votre script sera exécuté comme s'il s'agissait d'une commande système.
+
+Assurez-vous de respecter les règles de sécurité lors de l'exécution de scripts personnalisés, en particulier si ces scripts effectuent des opérations sensibles sur votre système.
+
+
+N'hésitez pas à personnaliser davantage ce README en ajoutant des informations spécifiques à votre projet ou en fournissant des détails supplémentaires sur son fonctionnement.
