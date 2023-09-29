@@ -7,7 +7,7 @@ import time
 
 # Fonction pour créer un nouveau repository GitHub
 def creer_nouveau_repo(nom_projet):
-    token = "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"
+    token = "Your_token"
     subprocess.run(['curl', f'-H', f'Authorization: token {token}', '-d', f'{{"name":"{nom_projet}"}}', 'https://api.github.com/user/repos'], stdout=subprocess.DEVNULL)
 
 # Définir les styles de couleurs
@@ -52,7 +52,7 @@ chemin = subprocess.check_output(['python3', 'C:/create/explo.py'], universal_ne
 print(f"{OPT_STYLE}Clonage du dépôt en cours...{Style.RESET_ALL}")
 # Exécuter la commande git clone avec suppression de la sortie
 # Exécuter la commande git clone en arrière-plan et capturer la sortie
-process = subprocess.Popen(f'git clone --origin template git@github.com:samyns/template.git "{chemin}/{nom_projet}"', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+process = subprocess.Popen(f'git clone --origin template git@github.com:username/template.git "{chemin}/{nom_projet}"', shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
 
 # Lire et afficher la sortie en temps réel
 with tqdm(total=100, desc="Clonage du dépôt", unit="%", ncols=80, bar_format='{percentage:3.0f}%|{bar:80}{r_bar}') as progress_bar:
@@ -68,7 +68,7 @@ os.chdir(f'{chemin}/{nom_projet}')
 
 
 # Remplace l'URL origin actuelle par la variable donnée en argument
-subprocess.run(f'git remote set-url template git@github.com:samyns/{nom_projet}.git', shell=True, stdout=subprocess.DEVNULL)
+subprocess.run(f'git remote set-url template git@github.com:username/{nom_projet}.git', shell=True, stdout=subprocess.DEVNULL)
 
 # Récupère les dernières modifications du remote
 subprocess.run('git pull origin main --allow-unrelated-histories', shell=True, stdout=subprocess.DEVNULL)
